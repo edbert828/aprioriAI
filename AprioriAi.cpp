@@ -112,6 +112,32 @@ void itemlist(){
 		}
 	}
 }
+
+struct Gl{
+	int id;
+	Gl *next;
+	Gl *prev;
+}*list3,*tail3;
+
+void gamelist(){
+	Gl *temp=new Gl();
+	temp->id=id;
+	temp->Consolename=con;
+
+	if(list==NULL){
+	list=tail=temp;
+	}	
+	else{
+		;
+		tail->next=temp;
+		temp->prev=tail;
+		tail=temp;
+		
+	}
+	list->prev=NULL;
+	tail->next=NULL;
+}
+
 int main(){
 	string sttr[100];
 	 if(checktextdata==false)
