@@ -120,22 +120,26 @@ struct Gl{
 }*list3,*tail3;
 
 void gamelist(){
-	Gl *temp=new Gl();
-	temp->id=id;
-	temp->Consolename=con;
-
-	if(list==NULL){
-	list=tail=temp;
-	}	
-	else{
-		;
-		tail->next=temp;
-		temp->prev=tail;
-		tail=temp;
-		
+	
+	for(int a = 0;a < 5;a++){
+	
+		Gl *temp=new Gl();
+		temp->id=1;
+		temp->Consolename=con;
+	
+		if(list==NULL){
+		list=tail=temp;
+		}	
+		else{
+			;
+			tail->next=temp;
+			temp->prev=tail;
+			tail=temp;
+			
+		}
+		list->prev=NULL;
+		tail->next=NULL;
 	}
-	list->prev=NULL;
-	tail->next=NULL;
 }
 
 int main(){
