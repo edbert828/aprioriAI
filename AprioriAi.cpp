@@ -121,7 +121,9 @@ int main(){
 		inputdata();
 		cout<<"List of item:\n";
 		showdata();
-	itemlist();
+		itemlist();
+		cout<<"\n\n";
+		cout<<"List of purchase per week\n";
 		for(int i=0;i<=num;i++){
 			cout<<i+1<<".   |";
 			Il *temp=list2[i];
