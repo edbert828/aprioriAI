@@ -125,20 +125,19 @@ void gamelist(){
 	
 		Gl *temp=new Gl();
 		temp->id=1;
-		temp->Consolename=con;
 	
 		if(list==NULL){
-		list=tail=temp;
+		list3=tail3=temp;
 		}	
 		else{
 			;
-			tail->next=temp;
-			temp->prev=tail;
-			tail=temp;
+			tail3->next=temp;
+			temp->prev=tail3;
+			tail3=temp;
 			
 		}
-		list->prev=NULL;
-		tail->next=NULL;
+		list3->prev=NULL;
+		tail3->next=NULL;
 	}
 }
 
