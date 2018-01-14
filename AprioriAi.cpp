@@ -22,12 +22,6 @@ struct Il{
 	Il *prev;
 }*list2[100],*end[100];
 
-struct Gl{
-	int id;
-	Gl *next;
-	Gl *prev;
-}*list3,*tail3;
-
 void inputtolist(string con,int id){
 	
 	Cl *temp=new Cl();
@@ -119,21 +113,24 @@ void itemlist(){
 	}
 }
 
-
+struct Gl{
+	int id;
+	Gl *next;
+	Gl *prev;
+}*list3,*tail3;
 
 void gamelist(){
 	
-	for(int a=0;a<5;a++){
+	for(int a = 0;a < 5;a++){
 	
 		Gl *temp=new Gl();
 		temp->id=1;
 	
-		if(list3==NULL){
+		if(list==NULL){
 		list3=tail3=temp;
-		cout<<list3->id;
 		}	
 		else{
-			
+			;
 			tail3->next=temp;
 			temp->prev=tail3;
 			tail3=temp;
@@ -165,7 +162,5 @@ int main(){
 			}
 			cout<<endl;
 		}
-		gamelist();
-		
 	}
 }
