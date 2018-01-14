@@ -5,6 +5,8 @@
 using namespace std;
 
 int num;
+int start=0;
+int start2=0;
 ifstream in("consolelist.txt");
 ifstream in2("setlist.txt");
 struct Cl{
@@ -22,6 +24,24 @@ struct Il{
 	Il *prev;
 }*list2[100],*end[100];
 
+<<<<<<< HEAD
+=======
+struct Subset{
+	int item;
+	Subset *next;
+	Subset *prev;	
+};
+struct Gl{
+	int id;
+	int value=0;
+	int check;
+	Subset *start; 
+	Subset *end;	
+	Gl *next;
+	Gl *prev;
+}*list3[100],*tail3[100];
+
+>>>>>>> 63db9913c28ab1f67b6d168c625583295add6afa
 void inputtolist(string con,int id){
 	
 	Cl *temp=new Cl();
@@ -113,6 +133,7 @@ void itemlist(){
 	}
 }
 
+<<<<<<< HEAD
 struct Gl{
 	int id;
 	Gl *next;
@@ -134,11 +155,79 @@ void gamelist(){
 			tail3->next=temp;
 			temp->prev=tail3;
 			tail3=temp;
-			
+=======
+void count(){
+	for(int i=0;i<=num;i++){
+		Il *temp=list2[i];
+		while(temp!=NULL){
+			Gl *temp2=list3[start2];
+			while(temp2!=NULL){
+				Subset *temp3=temp2->start;
+				while(temp3!=NULL){
+					if(temp3->item==temp->id){
+						temp2->value+=1;
+					}
+					temp3=temp3->next;
+				}
+				temp2=temp2->next;			
+			}
+			temp=temp->next;
 		}
-		list3->prev=NULL;
-		tail3->next=NULL;
 	}
+}
+
+bool gamelist(){
+	if(start2+1==1){
+		Cl *temp=list;
+		while(temp!=NULL){
+			Gl *temp2= new Gl();
+			Subset *temp3=new Subset();
+			
+			temp3->item=temp->id;
+			temp2->start=temp3;
+			if(list3[start2]==NULL){
+				list3[start2]=tail3[start2]=temp2;
+			
+			}
+			else{
+				
+				tail3[start2]->next=temp2;
+				temp2->prev=tail3[start2];
+				tail3[start2]=temp2;
+			}
+		
+			list3[start2]->prev=NULL;
+			tail3[start2]->next=NULL;
+			
+>>>>>>> 63db9913c28ab1f67b6d168c625583295add6afa
+			
+			temp=temp->next;
+		}
+		count();
+		start2++;
+		Gl *tempp =list3[start2-1];
+		cout<<endl;
+		while(tempp!=NULL){
+			cout<<tempp->start->item<<"   ";
+			cout<<tempp->value<<endl;
+			tempp=tempp->next;
+		}
+		return false;
+	}
+	else{
+	}
+	return false;
+	
+}
+
+void startai(){
+	while(1){
+	if(	gamelist()==false){
+		
+		break;
+	}
+	
+}
 }
 
 int main(){
@@ -162,5 +251,20 @@ int main(){
 			}
 			cout<<endl;
 		}
+<<<<<<< HEAD
+=======
+		cout<<"\n\n\n";
+		
+		string start="n";
+
+		while(start!="y" && start!="Y"){
+		cout<<"Start Algorith when press (Y/y):";
+		cin>>start;
+		if(start=="y" || start=="Y")
+		startai();
+		
+	}
+		
+>>>>>>> 63db9913c28ab1f67b6d168c625583295add6afa
 	}
 }
