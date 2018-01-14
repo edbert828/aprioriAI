@@ -5,6 +5,8 @@
 using namespace std;
 
 int num;
+int start=0;
+int start2=0;
 ifstream in("consolelist.txt");
 ifstream in2("setlist.txt");
 struct Cl{
@@ -22,11 +24,20 @@ struct Il{
 	Il *prev;
 }*list2[100],*end[100];
 
+struct Subset{
+	int item;
+	Subset *next;
+	Subset *prev;	
+};
 struct Gl{
 	int id;
+	int value;
+	int check;
+	Subset *start; 
+	Subset *end;	
 	Gl *next;
 	Gl *prev;
-}*list3,*tail3;
+}*list3[100],*tail3[100];
 
 void inputtolist(string con,int id){
 	
@@ -121,27 +132,55 @@ void itemlist(){
 
 
 
-void gamelist(){
-	
-	for(int a=0;a<5;a++){
-	
-		Gl *temp=new Gl();
-		temp->id=1;
-	
-		if(list3==NULL){
-		list3=tail3=temp;
-		cout<<list3->id;
-		}	
-		else{
+bool gamelist(){
+	if(start2==0){
+		Cl *temp=list;
+		while(temp!=NULL){
+			Gl *temp2= new Gl();
+			Subset *temp3=new Subset();
 			
-			tail3->next=temp;
-			temp->prev=tail3;
-			tail3=temp;
+			temp3->item=temp->id;
+			temp2->start=temp3;
+			if(list3[start2]==NULL){
+				list3[start2]=tail3[start2]=temp2;
 			
+			}
+			else{
+				
+				tail3[start2]->next=temp2;
+				temp2->prev=tail3[start2];
+				tail3[start2]=temp2;
+			}
+		
+			list3[start2]->prev=NULL;
+			tail3[start2]->next=NULL;
+			
+			
+			temp=temp->next;
 		}
-		list3->prev=NULL;
-		tail3->next=NULL;
+		start2++;
+		cout<<start2;
+		Gl *tempp =list3[start2-1];
+		if(tempp!=NULL){
+			cout<<tempp->start->item<<endl;
+			tempp=tempp->next;
+		}
+		return false;
 	}
+	else{
+	}
+	return false;
+	
+}
+
+void startai(){
+	while(1){
+	if(	gamelist()==false){
+		cout<<list3[0]->start->item;
+		break;
+	}
+	
+}
 }
 
 int main(){
@@ -165,7 +204,17 @@ int main(){
 			}
 			cout<<endl;
 		}
-		gamelist();
+		cout<<"\n\n\n";
+		
+		string start="n";
+
+		while(start!="y" && start!="Y"){
+		cout<<"Start Algorith when press (Y/y):";
+		cin>>start;
+		if(start=="y" || start=="Y")
+		startai();
+		
+	}
 		
 	}
 }
