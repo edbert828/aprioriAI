@@ -31,7 +31,7 @@ struct Subset{
 };
 struct Gl{
 	int id;
-	int value;
+	int value=0;
 	int check;
 	Subset *start; 
 	Subset *end;	
@@ -130,10 +130,28 @@ void itemlist(){
 	}
 }
 
-
+void count(){
+	for(int i=0;i<=num;i++){
+		Il *temp=list2[i];
+		while(temp!=NULL){
+			Gl *temp2=list3[start2];
+			while(temp2!=NULL){
+				Subset *temp3=temp2->start;
+				while(temp3!=NULL){
+					if(temp3->item==temp->id){
+						temp2->value+=1;
+					}
+					temp3=temp3->next;
+				}
+				temp2=temp2->next;			
+			}
+			temp=temp->next;
+		}
+	}
+}
 
 bool gamelist(){
-	if(start2==0){
+	if(start2+1==1){
 		Cl *temp=list;
 		while(temp!=NULL){
 			Gl *temp2= new Gl();
@@ -158,11 +176,13 @@ bool gamelist(){
 			
 			temp=temp->next;
 		}
+		count();
 		start2++;
-		cout<<start2;
 		Gl *tempp =list3[start2-1];
-		if(tempp!=NULL){
-			cout<<tempp->start->item<<endl;
+		cout<<endl;
+		while(tempp!=NULL){
+			cout<<tempp->start->item<<"   ";
+			cout<<tempp->value<<endl;
 			tempp=tempp->next;
 		}
 		return false;
@@ -176,7 +196,7 @@ bool gamelist(){
 void startai(){
 	while(1){
 	if(	gamelist()==false){
-		cout<<list3[0]->start->item;
+		
 		break;
 	}
 	
