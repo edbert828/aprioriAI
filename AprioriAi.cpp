@@ -150,6 +150,42 @@ void count(){
 	}
 }
 
+void terminateprint(){
+	Gl *temp2=list3[start2];
+	while(temp2!=NULL){
+		
+		if(temp2->value<2){
+			
+			if(temp2->prev==NULL){
+				temp2=temp2->next;
+				temp2->prev=NULL;
+			}
+			else if(temp2->next==NULL){
+				temp2=temp2->prev;
+				temp2->next=NULL;
+			}
+			else{
+				temp2->prev->next=temp2->next;
+				temp2->next->prev=temp2->prev;
+				temp2=temp2->prev;
+			}	
+			
+		}
+		temp2=temp2->next;
+	}
+	Gl *temp=list3[start2];
+	while(temp!=NULL){
+		Subset *temp3=temp->start;
+		while(temp3!=NULL){
+			cout<<temp3->item<<"   ";
+			temp3=temp3->next;
+		}
+		cout<<temp->value<<endl;
+		temp=temp->next;
+	}
+	
+}
+
 bool gamelist(){
 	if(start2+1==1){
 		Cl *temp=list;
@@ -177,14 +213,17 @@ bool gamelist(){
 			temp=temp->next;
 		}
 		count();
-		start2++;
-		Gl *tempp =list3[start2-1];
+		Gl *tempp =list3[start2];
 		cout<<endl;
 		while(tempp!=NULL){
 			cout<<tempp->start->item<<"   ";
 			cout<<tempp->value<<endl;
 			tempp=tempp->next;
 		}
+		cout<<endl<<"terminate subset list"<<endl;
+		terminateprint();
+		
+		start2++;
 		return false;
 	}
 	else{
