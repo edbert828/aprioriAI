@@ -89,7 +89,7 @@ void showdata(){
 }
 void itemlist(){
 	if(!in2){
-		cout<<"no data";
+		cout<<"no data found";
 	}
 	else{
 		char intt[255];
@@ -224,7 +224,7 @@ bool gamelist(){
 		terminateprint();
 		
 		start2++;
-		return false;
+		return true;
 	}
 	else{
 	}
