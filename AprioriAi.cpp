@@ -24,7 +24,6 @@ struct Il{
 	Il *prev;
 }*list2[100],*end[100];
 
-
 struct Subset{
 	int item;
 	Subset *next;
@@ -39,7 +38,6 @@ struct Gl{
 	Gl *next;
 	Gl *prev;
 }*list3[100],*tail3[100];
-
 
 void inputtolist(string con,int id){
 	
@@ -132,23 +130,6 @@ void itemlist(){
 	}
 }
 
-
-void gamelist(){
-	
-	for(int a = 0;a < 5;a++){
-	
-		Gl *temp=new Gl();
-		temp->id=1;
-	
-		if(list==NULL){
-		list3=tail3=temp;
-		}	
-		else{
-			;
-			tail3->next=temp;
-			temp->prev=tail3;
-			tail3=temp;
-
 void count(){
 	for(int i=0;i<=num;i++){
 		Il *temp=list2[i];
@@ -157,9 +138,11 @@ void count(){
 			while(temp2!=NULL){
 				Subset *temp3=temp2->start;
 				while(temp3!=NULL){
+					if(start2==0){
 					if(temp3->item==temp->id){
 						temp2->value+=1;
 					}
+				}
 					temp3=temp3->next;
 				}
 				temp2=temp2->next;			
@@ -176,22 +159,25 @@ void terminateprint(){
 		if(temp2->value<2){
 			
 			if(temp2->prev==NULL){
-				temp2=temp2->next;
-				temp2->prev=NULL;
+				
+				list3[start2]=list3[start2]->next;
+				list3[start2]->prev=NULL;
 			}
 			else if(temp2->next==NULL){
-				temp2=temp2->prev;
-				temp2->next=NULL;
+				tail3[start2]=tail3[start2]->prev;
+				tail3[start2]->next=NULL;
 			}
 			else{
 				temp2->prev->next=temp2->next;
 				temp2->next->prev=temp2->prev;
-				temp2=temp2->prev;
+				
 			}	
 			
 		}
+		
 		temp2=temp2->next;
 	}
+	
 	Gl *temp=list3[start2];
 	while(temp!=NULL){
 		Subset *temp3=temp->start;
@@ -199,14 +185,23 @@ void terminateprint(){
 			cout<<temp3->item<<"   ";
 			temp3=temp3->next;
 		}
-		cout<<temp->value<<endl;
+		cout<<"|"<<temp->value<<endl;
 		temp=temp->next;
 	}
 	
 }
-
+bool check2(){
+	Gl *temp=list3[start2];
+	while(temp!=NULL){
+		if(temp->value>=2)
+		return true;
+		temp=temp->next;
+	}
+	return false;
+}
 bool gamelist(){
 	if(start2+1==1){
+		cout<<"First Iteration";
 		Cl *temp=list;
 		while(temp!=NULL){
 			Gl *temp2= new Gl();
@@ -228,7 +223,6 @@ bool gamelist(){
 			list3[start2]->prev=NULL;
 			tail3[start2]->next=NULL;
 			
-
 			
 			temp=temp->next;
 		}
@@ -236,7 +230,7 @@ bool gamelist(){
 		Gl *tempp =list3[start2];
 		cout<<endl;
 		while(tempp!=NULL){
-			cout<<tempp->start->item<<"   ";
+			cout<<tempp->start->item<<"   |";
 			cout<<tempp->value<<endl;
 			tempp=tempp->next;
 		}
@@ -245,6 +239,64 @@ bool gamelist(){
 		
 		start2++;
 		return true;
+	}
+	else if(start2+1==2){
+		cout<<"\n\nSecond Iteration\n\n";
+		Gl *temps =list3[0];
+		while(temps!=NULL){
+		Gl *temps2 =temps->next;
+		while(temps2!=NULL){
+		Gl *temps3 =new Gl();
+		
+		for(int ii=0;ii<=start2;ii++){
+		Subset *temps4= new Subset();
+		if(ii==0){
+			temps4->item=temps->start->item;
+			
+		}
+		else if(ii==1){
+			temps4->item=temps2->start->item;
+			
+		}
+		if(temps3->start==NULL)
+			temps3->start=temps4;
+		else{
+			temps3->start->next=temps4;
+			temps4->prev=temps3->start;
+		}
+		}
+		if(list3[start2]==NULL){
+			list3[start2]=tail3[start2]=temps3;
+		}
+		else{
+			tail3[start2]->next=temps3;
+			temps3->prev=tail3[start2];
+			tail3[start2]=temps3;
+		}
+		list3[start2]->prev=NULL;
+		tail3[start2]->next=NULL;
+		temps2=temps2->next;
+		}
+		temps=temps->next;
+		
+		}
+		count();
+		Gl *show=list3[start2];
+		while(show!=NULL){
+			Subset *show2=show->start;
+			while(show2!=NULL){
+				cout<<show2->item<<"   ";
+				show2=show2->next;
+			}
+			cout<<"|"<<show->value;
+			cout<<endl;
+			show=show->next;
+		}
+		if(check2()==false){
+			return false;
+		}
+		cout<<endl<<endl;
+		terminateprint();
 	}
 	else{
 	}
@@ -283,7 +335,6 @@ int main(){
 			}
 			cout<<endl;
 		}
-
 		cout<<"\n\n\n";
 		
 		string start="n";
@@ -296,6 +347,5 @@ int main(){
 		
 	}
 		
-
 	}
 }
