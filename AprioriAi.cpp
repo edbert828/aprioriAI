@@ -24,8 +24,7 @@ struct Il{
 	Il *prev;
 }*list2[100],*end[100];
 
-<<<<<<< HEAD
-=======
+
 struct Subset{
 	int item;
 	Subset *next;
@@ -41,7 +40,7 @@ struct Gl{
 	Gl *prev;
 }*list3[100],*tail3[100];
 
->>>>>>> 63db9913c28ab1f67b6d168c625583295add6afa
+
 void inputtolist(string con,int id){
 	
 	Cl *temp=new Cl();
@@ -133,12 +132,6 @@ void itemlist(){
 	}
 }
 
-<<<<<<< HEAD
-struct Gl{
-	int id;
-	Gl *next;
-	Gl *prev;
-}*list3,*tail3;
 
 void gamelist(){
 	
@@ -155,7 +148,7 @@ void gamelist(){
 			tail3->next=temp;
 			temp->prev=tail3;
 			tail3=temp;
-=======
+
 void count(){
 	for(int i=0;i<=num;i++){
 		Il *temp=list2[i];
@@ -199,7 +192,7 @@ bool gamelist(){
 			list3[start2]->prev=NULL;
 			tail3[start2]->next=NULL;
 			
->>>>>>> 63db9913c28ab1f67b6d168c625583295add6afa
+
 			
 			temp=temp->next;
 		}
@@ -251,8 +244,7 @@ int main(){
 			}
 			cout<<endl;
 		}
-<<<<<<< HEAD
-=======
+
 		cout<<"\n\n\n";
 		
 		string start="n";
@@ -265,6 +257,6 @@ int main(){
 		
 	}
 		
->>>>>>> 63db9913c28ab1f67b6d168c625583295add6afa
+
 	}
 }
