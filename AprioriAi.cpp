@@ -216,6 +216,7 @@ bool check3(){
 		int iii=0;
 	Gl *testt=list3[start2];
 	while(testt!=NULL){		
+	iii++;
 		testt=testt->next;
 		
 	}
@@ -223,7 +224,7 @@ bool check3(){
 	if(iii<2){
 		return false;
 	}
-
+	return true;
 }
 bool gamelist(){
 	if(start2+1==1){
@@ -265,7 +266,9 @@ bool gamelist(){
 		}
 		cout<<endl<<"terminate subset list"<<endl;
 		terminateprint();
-
+			if(check3()==false){
+			return false;
+		}
 		start2++;
 		return true;
 	}
