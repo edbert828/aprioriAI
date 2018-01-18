@@ -136,25 +136,47 @@ void count(){
 		while(temp!=NULL){
 			Gl *temp2=list3[start2];
 			while(temp2!=NULL){
-				Subset *temp3=temp2->start;
 					if(start2==0){
+						Subset *temp3=temp2->start;
 					if(temp3->item==temp->id){
 						temp2->value+=1;
 					}
 				}
 				else if(start2==1){
+					Subset *temp3=temp2->start;
 						if(temp3->item==temp->id){
 							Subset *temp4=temp3->next;
 							Il *temps=temp;
 							while(temps!=NULL){
-								if(temp4->item==temps->id)
+								if(temp4->item==temps->id){
 								temp2->value+=1;
+							}
 								temps=temps->next;
 							}
 						}
-						temp3=temp3->next;
+						
 				}
-					temp3=temp3->next;
+				else if(start2==2){
+					Subset *temp3=temp2->start;
+					if(temp3->item==temp->id){
+						Subset *temp4=temp3->next;
+						Il *temps=temp;
+						while(temps!=NULL){
+							if(temp4->item==temps->id){
+								Subset *temp5=temp4->next;
+								Il *tempss=temp;
+								while(tempss!=NULL){
+								if(temp5->item==tempss->id){
+								temp2->value+=1;
+								}
+								tempss=tempss->next;
+							}	
+							}
+							temps=temps->next;
+						}
+					}
+				}
+					
 				temp2=temp2->next;			
 			}
 			temp=temp->next;
@@ -332,9 +354,76 @@ bool gamelist(){
 		if(check3()==false){
 			return false;
 		}
-		
+		start2++;
+		return true;
 	}
-	else{
+	else if(start2+1==3){
+		cout<<"\n\nLast Iteration";
+		Gl *tempss = list3[start2-1];
+		while(tempss!=NULL){
+			Subset *tempss2=tempss->start;
+			Gl *tempss3=tempss->next;
+			while(tempss3!=NULL){
+				Subset *tempss4=tempss3->start;
+				if(tempss2->item==tempss4->item){
+					Subset *tempss5=tempss2->next;
+					Gl *tempss6=tempss3->next;
+					
+					while(tempss6!=NULL){
+						Subset *tempss7=tempss6->start;
+
+						if(tempss5->item==tempss6->start->item){
+							if(tempss3->start->next->item==tempss7->next->item){
+									Gl *tempss8=new Gl();
+									
+									Subset *tempss9=new Subset();
+									tempss9->item=tempss->start->item;
+									tempss9->next=tempss->start->next;
+									tempss9->next->prev=tempss9;
+								
+									tempss9->next->next=tempss7->next;
+									tempss9->next->next->prev=tempss9->next;
+									tempss8->start=tempss9;
+									
+									if(list3[start2]==NULL){
+										list3[start2]=tail3[start2]=tempss8;
+									}
+									else{
+										tail3[start2]->next=tempss8;
+										tempss8->prev=tail3[start2];
+										tail3[start2]=tempss8;
+									}
+									
+							}
+						}
+						tempss6=tempss6->next;
+					}
+				}
+				tempss3=tempss3->next;
+			}
+			tempss=tempss->next;
+		}
+		
+	
+		cout<<endl;
+		count();
+		Gl *show=list3[start2];
+		while(show!=NULL){
+			Subset *show2=show->start;
+			while(show2!=NULL){
+				cout<<show2->item<<"  ";
+				show2=show2->next;
+			}
+			cout<<"|"<<show->value;
+			cout<<"\n";
+			show=show->next;
+		}
+		if(check3()==false){
+			cout<<"a";
+			return false;
+		}
+			terminateprint();
+			return false;
 	}
 	return false;
 	
