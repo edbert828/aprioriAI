@@ -350,6 +350,7 @@ bool gamelist(){
 			return false;
 		}
 		cout<<endl<<endl;
+		cout<<"terminate subset List\n\n";
 		terminateprint();
 		if(check3()==false){
 			return false;
@@ -411,7 +412,7 @@ bool gamelist(){
 		while(show!=NULL){
 			Subset *show2=show->start;
 			while(show2!=NULL){
-				cout<<show2->item<<"  ";
+				cout<<show2->item<<"   ";
 				show2=show2->next;
 			}
 			cout<<"|"<<show->value;
@@ -422,6 +423,8 @@ bool gamelist(){
 			cout<<"a";
 			return false;
 		}
+			cout<<endl<<endl;
+		cout<<"Terminate subset List\n\n";
 			terminateprint();
 			return false;
 	}
